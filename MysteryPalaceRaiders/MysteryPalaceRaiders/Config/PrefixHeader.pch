@@ -1,0 +1,18 @@
+//
+//  PrefixHeader.pch
+//  MWallet
+//
+//  Created by jordan.Li on 15/10/20.
+//  Copyright © 2015年 jordan.Li. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import <AdSupport/ASIdentifierManager.h>
+
+//配置
+#import "Common.h"
+
+
+#endif /* PrefixHeader_pch */
