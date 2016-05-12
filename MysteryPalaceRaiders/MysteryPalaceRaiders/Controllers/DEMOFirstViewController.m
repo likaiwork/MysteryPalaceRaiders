@@ -11,7 +11,7 @@
 #import "CheatsDetailViewController.h"
 @import GoogleMobileAds;
 
-@interface DEMOFirstViewController ()
+@interface DEMOFirstViewController ()<GADInterstitialDelegate>
 @property (nonatomic,strong) UITableView  *  tableView;
 @property (nonatomic,strong) NSArray * nsArray;
 @property (strong, nonatomic) GADBannerView  *bannerView;
@@ -32,11 +32,13 @@
                                                                             target:self
                                                                             action:@selector(presentLeftMenuViewController:)];
  
+    /**
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"游戏"
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
                                                                             action:@selector(presentRightMenuViewController:)];
  
+    */
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -50,7 +52,7 @@
     [self initTableView];
     [self createData];
     [self loadBannerAdamob];
-    [self loadInterstitialAdmob];
+    self.interstitial = [self createAndLoadInterstitial];
     
 }
 
@@ -117,17 +119,20 @@
     
 }
 
--(void)loadInterstitialAdmob{
-    self.interstitial = [[GADInterstitial alloc] initWithAdUnitID:@"ca-app-pub-2144172051563531/7757918404"];
-    
-    GADRequest *request = [GADRequest request];
-    // Requests test ads on test devices.
-    
-    [self.interstitial loadRequest:request];
+- (GADInterstitial *)createAndLoadInterstitial {
+    GADInterstitial *interstitial = [[GADInterstitial alloc] initWithAdUnitID:@"ca-app-pub-2144172051563531/7757918404"];
+    interstitial.delegate = self;
+    [interstitial loadRequest:[GADRequest request]];
+    return interstitial;
+}
+
+- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial {
+    self.interstitial = [self createAndLoadInterstitial];
 }
 
 - (void)gameOver {
-    if ([self.interstitial isReady]) {
+    if ([self.interstitial isReady])
+    {
         [self.interstitial presentFromRootViewController:self];
     }
     // Rest of game over logic goes here.

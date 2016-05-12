@@ -10,6 +10,10 @@
 #import "DEMOLeftMenuViewController.h"
 #import "DEMORightMenuViewController.h"
 #import "DEMOFirstViewController.h"
+#import "UMSocialWechatHandler.h"
+#import "UMSocialSinaHandler.h"
+#import "UMSocial.h"
+#import "MobClick.h"
 
 @interface AppDelegate ()
 
@@ -41,7 +45,11 @@
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-
+    
+    
+    [UMSocialData setAppKey:@"57343e19e0f55a70c3002647"];
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    [MobClick setAppVersion:version];
     return YES;
 }
 
