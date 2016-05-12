@@ -31,6 +31,8 @@
 		FAF582111CD0B62500992B81 /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF5820A1CD0B62500992B81 /* UIViewController+RESideMenu.m */; };
 		FAF582191CD0F05300992B81 /* CheatsListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF582171CD0F05300992B81 /* CheatsListCell.m */; };
 		FAF5821A1CD0F05300992B81 /* CheatsListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF582181CD0F05300992B81 /* CheatsListCell.xib */; };
+		FAFBB70E1CE454B600162E06 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAFBB70D1CE454B600162E06 /* CoreBluetooth.framework */; };
+		FAFBB7101CE454BD00162E06 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAFBB70F1CE454BD00162E06 /* SafariServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +100,8 @@
 		FAF582161CD0F05300992B81 /* CheatsListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheatsListCell.h; sourceTree = "<group>"; };
 		FAF582171CD0F05300992B81 /* CheatsListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheatsListCell.m; sourceTree = "<group>"; };
 		FAF582181CD0F05300992B81 /* CheatsListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheatsListCell.xib; sourceTree = "<group>"; };
+		FAFBB70D1CE454B600162E06 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		FAFBB70F1CE454BD00162E06 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +109,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAFBB7101CE454BD00162E06 /* SafariServices.framework in Frameworks */,
+				FAFBB70E1CE454B600162E06 /* CoreBluetooth.framework in Frameworks */,
 				FA5A84011CD213000020FE93 /* MessageUI.framework in Frameworks */,
 				047E374940D3016A96D2F13E /* libPods.a in Frameworks */,
 			);
@@ -139,6 +145,8 @@
 		33FE5419B7F0F2363FF8B0F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FAFBB70F1CE454BD00162E06 /* SafariServices.framework */,
+				FAFBB70D1CE454B600162E06 /* CoreBluetooth.framework */,
 				53FA5E4AE725975865A274A6 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -620,7 +628,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/MysteryPalaceRaiders/Config/PrefixHeader.pch";
 				INFOPLIST_FILE = MysteryPalaceRaiders/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jordan.mysterypalace.MysteryPalaceRaiders;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jordan.mysterypalaceraiders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -633,7 +641,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/MysteryPalaceRaiders/Config/PrefixHeader.pch";
 				INFOPLIST_FILE = MysteryPalaceRaiders/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jordan.mysterypalace.MysteryPalaceRaiders;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jordan.mysterypalaceraiders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

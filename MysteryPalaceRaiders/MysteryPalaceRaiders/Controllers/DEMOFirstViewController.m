@@ -9,10 +9,15 @@
 #import "DEMOFirstViewController.h"
 #import "CheatsListCell.h"
 #import "CheatsDetailViewController.h"
+@import GoogleMobileAds;
 
 @interface DEMOFirstViewController ()
 @property (nonatomic,strong) UITableView  *  tableView;
 @property (nonatomic,strong) NSArray * nsArray;
+@property (strong, nonatomic) GADBannerView  *bannerView;
+
+@property(nonatomic, strong) GADInterstitial *interstitial;
+
 @end
 
 @implementation DEMOFirstViewController
@@ -26,12 +31,12 @@
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
                                                                             action:@selector(presentLeftMenuViewController:)];
-    /**
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Right"
+ 
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"游戏"
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
                                                                             action:@selector(presentRightMenuViewController:)];
-     */
+ 
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -44,6 +49,9 @@
     [self becomeFirstResponder];
     [self initTableView];
     [self createData];
+    [self loadBannerAdamob];
+    [self loadInterstitialAdmob];
+    
 }
 
 -(void)createData
@@ -54,7 +62,7 @@
 
 #pragma mark - init
 - (void)initTableView{
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT - 64) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT - 64-50) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.showsVerticalScrollIndicator = NO;
@@ -95,6 +103,39 @@
     [self.navigationController pushViewController:cheatsDetailView animated:YES];
     cheatsDetailView.level = indexPath.row;
     cheatsDetailView.hidesBottomBarWhenPushed = YES;
+}
+
+
+-(void)loadBannerAdamob
+{
+    self.bannerView = [[GADBannerView alloc] initWithFrame:CGRectMake(0.0, UI_SCREEN_HEIGHT-50, UI_SCREEN_WIDTH, 50)];
+    self.bannerView.adUnitID = @"ca-app-pub-2144172051563531/2908916401";
+    self.bannerView.rootViewController = self;
+    GADRequest *request = [GADRequest request];
+    [self.view addSubview:self.bannerView];
+    [self.bannerView loadRequest:request];
+    
+}
+
+-(void)loadInterstitialAdmob{
+    self.interstitial = [[GADInterstitial alloc] initWithAdUnitID:@"ca-app-pub-2144172051563531/7757918404"];
+    
+    GADRequest *request = [GADRequest request];
+    // Requests test ads on test devices.
+    
+    [self.interstitial loadRequest:request];
+}
+
+- (void)gameOver {
+    if ([self.interstitial isReady]) {
+        [self.interstitial presentFromRootViewController:self];
+    }
+    // Rest of game over logic goes here.
+}
+
+- (void)presentRightMenuViewController:(id)sender
+{
+    [self gameOver];
 }
 
 - (void)viewWillAppear:(BOOL)animated
